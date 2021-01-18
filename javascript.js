@@ -2,7 +2,7 @@ for(let i = 0; i < 18; i++){
     document.querySelectorAll('button')[i].addEventListener("click", function(){        
         if(!isNaN(this.innerText)){        
         let tela = document.querySelector('.resultado');
-        tela.innerText = tela.innerText + this.innerText;
+        tela.innerText += this.innerText;
         }else{  
             let tela = document.querySelector('.resultado');         
             operador = this.innerText; 
@@ -14,14 +14,14 @@ for(let i = 0; i < 18; i++){
             }else if(operador === 'C'){
                 tela.innerText = '';
             }else if(operador === ','){
-                operador = '.';
+                tela.innerText += '.';
             }else{           
-                tela.innerText = tela.innerText + operador; 
+                tela.innerText += operador; 
         }       
     }
     function telaFinalResultado(){
         let telaFinal = document.querySelector('.resultado').innerText;
-        telaFinal.innerText = telaFinal.innerText + this.innerText;            
+        telaFinal.innerText += this.innerText;            
         return eval(telaFinal);
     }        
 })}
