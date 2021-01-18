@@ -10,8 +10,7 @@ for(let i = 0; i < 18; i++){
             tela.innerText = '';
             }else if(operador === 'Enter'){
                 tela.innerText = telaFinalResultado();
-                console.log(telaFinalResultado());            
-
+                console.log(telaFinalResultado());
             }else if(operador === 'C'){
                 tela.innerText = '';
             }else if(operador === ','){
