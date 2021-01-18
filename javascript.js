@@ -4,7 +4,6 @@ for(let i = 0; i < 18; i++){
             let tela = document.querySelector('.resultado');
             tela.innerText += this.innerText;
         }else{ 
-            let cont = true; 
             let tela = document.querySelector('.resultado');         
             operador = this.innerText;             
             switch (operador){               
