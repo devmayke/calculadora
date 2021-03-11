@@ -1,36 +1,58 @@
-for(let i = 0; i < 18; i++){
-    document.querySelectorAll('button')[i].addEventListener("click", function(){         
-        if(!isNaN(this.innerText)){        
-            let tela = document.querySelector('.resultado');
-            tela.innerText += this.innerText;
-        }else{ 
-            let tela = document.querySelector('.resultado');         
-            operador = this.innerText;             
-            switch (operador){               
-                case 'Enter':
-                    if(operador === 'Enter' && tela.innerText === ''){
-                        tela.innerText = '';
-                    }else{
-                        tela.innerText = telaFinalResultado();
-                        console.log(telaFinalResultado());
-                    }
-                    break;
-                case 'C':
-                    tela.innerText = '';                
-                    break;
-                case ',':
-                    tela.innerText += '.';                   
-                    break;
-                default:
-                    tela.innerText += operador;            
-            }
-        }
-    function telaFinalResultado(){
-        let telaFinal = document.querySelector('.resultado').innerText;
-        telaFinal.innerText += this.innerText;            
-        return eval(telaFinal);
-    }        
-})}
+const tela = document.querySelector('.resultado');
+const botoes =document.querySelectorAll('button');
+
+
+for(let i = 0; i <botoes.length; i++){
+   botoes[i].addEventListener("click", (e)=>{  
+       destingueTeclas(e)       
+   })
+}
+
+function destingueTeclas(e){
+   if(!isNaN(e.target.innerText)){           
+       tela.innerText += e.target.innerText;
+       console.log(e.target.innerText)
+   }else{
+    switch (e.target.innerText){               
+        case 'Enter':
+            if(tela.innerText === ''){
+                tela.innerText = '';
+            }else{
+                tela.innerText= resultado(tela.innerText)
+            }            
+            break;
+        case 'C':
+            tela.innerText = '';                
+            break;
+        case '.':  
+            verifica(',')                          
+        break;
+        case ',':  
+            verifica(',')                         
+            break;       
+        default:
+            verifica(e.target.innerText)                      
+    }       
+   }
+}
+
+function verifica(v){
+    if(tela.innerText.substr(tela.innerText.length-1)=== v){  
+        tela.innerText = tela.innerText;
+    }else{
+        tela.innerText += v; 
+    } 
+    if(tela.innerText.indexOf(',') > -1) {        
+        
+    }
+}
+
+function resultado(resultado){
+    return eval(resultado)
+}
+
+
+
 
 
 
