@@ -1,33 +1,46 @@
-for(let i = 0; i < 18; i++){
-    document.querySelectorAll('button')[i].addEventListener("click", function(){         
-        if(!isNaN(this.innerText)){        
-            let tela = document.querySelector('.resultado');
-            tela.innerText += this.innerText;
-        }else{ 
-            let tela = document.querySelector('.resultado');         
-            operador = this.innerText;             
-            switch (operador){               
+const tela = document.querySelector('.resultado');
+const fn={    
+       init(e) {
+        if (!isNaN(e.target.innerText)) {
+            tela.innerText += e.target.innerText;
+            console.log(e.target.innerText)
+        } else {
+            switch (e.target.innerText) {
                 case 'Enter':
-                    if(operador === 'Enter' && tela.innerText === ''){
+                    if (tela.innerText === '') {
                         tela.innerText = '';
-                    }else{
-                        tela.innerText = telaFinalResultado();
-                        console.log(telaFinalResultado());
+                    } else {
+                        tela.innerText = fn.resultado(tela.innerText)
                     }
                     break;
                 case 'C':
-                    tela.innerText = '';                
+                    tela.innerText = '';
+                    break;
+                case '.':
+                    fn.verifica(',')
                     break;
                 case ',':
-                    tela.innerText += '.';                   
+                    fn.verifica(',')
                     break;
                 default:
-                    tela.innerText += operador;            
+                    fn.verifica(e.target.innerText)
             }
         }
-    function telaFinalResultado(){
-        let telaFinal = document.querySelector('.resultado').innerText;
-        telaFinal.innerText += this.innerText;            
-        return eval(telaFinal);
-    }        
-})}
+    },
+
+    verifica(v) {
+        if (tela.innerText.substr(tela.innerText.length - 1) === v) {
+            tela.innerText = tela.innerText;
+        } else {
+            tela.innerText += v;
+        }
+        if (tela.innerText.indexOf(',') > -1) {
+    
+        }
+    },
+    
+    resultado(resultado) {
+        return eval(resultado)
+    }
+}
+export {fn}
